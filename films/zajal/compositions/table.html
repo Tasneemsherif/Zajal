@@ -1,0 +1,105 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #c4b49a;
+    }
+    @font-face {
+      font-family: "Noto Naskh Arabic";
+      src: url("assets/fonts/NotoNaskhArabic-500.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+    }
+    #table-shot {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    #table-cam {
+      position: absolute;
+      inset: 0;
+      transform-origin: 50% 50%;
+    }
+    #table-plate {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    #words {
+      position: absolute;
+      left: 1210px;
+      top: 128px;
+      width: 500px;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: #f4efe4;
+    }
+    #words p {
+      opacity: 0;
+      filter: blur(8px);
+    }
+    #tajalla {
+      font-family: "Noto Naskh Arabic", serif;
+      font-size: 78px;
+      line-height: 1.1;
+      font-weight: 500;
+    }
+    #zajal-name {
+      margin-top: 18px;
+      font-family: "EB Garamond", serif;
+      font-size: 46px;
+      line-height: 1;
+      letter-spacing: 0.28em;
+      font-weight: 500;
+    }
+    #size-line {
+      margin-top: 16px;
+      font-family: "EB Garamond", serif;
+      font-size: 30px;
+      line-height: 1;
+      letter-spacing: 0.22em;
+    }
+  </style>
+  <div id="root" data-composition-id="table" data-width="1920" data-height="1080">
+    <div
+      id="table-shot"
+      class="clip"
+      data-start="0"
+      data-duration="11"
+      data-track-index="0"
+      data-layout-allow-overflow
+    >
+      <div id="table-cam">
+        <img id="table-plate" src="assets/table.jpg" alt="" />
+      </div>
+    </div>
+    <div id="words" class="clip" data-start="7.4" data-duration="3.55" data-track-index="2">
+      <p id="tajalla" data-var-text="lineArabic">تجلى</p>
+      <p id="zajal-name" data-var-text="lineName">ZAJAL</p>
+      <p id="size-line" data-var-text="lineSize">100 ML</p>
+    </div>
+  </div>
+  <script>
+    function place(scale, vx, vy) {
+      return { scale: scale, x: (960 - vx) * scale, y: (540 - vy) * scale };
+    }
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#table-cam", place(3.05, 1140, 520), 0);
+    tl.to("#table-cam", { ...place(2.05, 900, 590), duration: 1.15, ease: "power2.inOut" }, 0.85);
+    tl.to("#table-cam", { ...place(1.7, 760, 640), duration: 1.15, ease: "power2.inOut" }, 2.15);
+    tl.to("#table-cam", { ...place(1.55, 740, 690), duration: 1.2, ease: "power2.inOut" }, 3.45);
+    tl.to("#table-cam", { ...place(1.22, 1040, 600), duration: 1.3, ease: "power2.inOut" }, 4.8);
+    tl.to("#table-cam", { ...place(1, 960, 540), duration: 1.45, ease: "power2.inOut" }, 6.25);
+    tl.to("#tajalla", { opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power2.out" }, 7.7);
+    tl.to("#zajal-name", { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.out" }, 8.4);
+    tl.to("#size-line", { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power2.out" }, 8.9);
+    window.__timelines["table"] = tl;
+  </script>
+</template>

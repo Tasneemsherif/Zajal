@@ -1,0 +1,73 @@
+<!doctype html>
+<html
+  lang="ar"
+  data-resolution="landscape"
+  data-composition-variables='[{"id":"lineArabic","type":"string","label":"Arabic line","default":"تجلى"},{"id":"lineName","type":"string","label":"Name","default":"ZAJAL"},{"id":"lineSize","type":"string","label":"Size","default":"100 ML"}]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ground: #c4b49a;
+        --ink: #f4efe4;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--ground);
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="15"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div
+        id="room"
+        data-composition-id="room"
+        data-composition-src="compositions/room.html"
+        data-start="0"
+        data-duration="4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="table"
+        data-composition-id="table"
+        data-composition-src="compositions/table.html"
+        data-start="4"
+        data-duration="11"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
